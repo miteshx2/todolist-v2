@@ -1,5 +1,5 @@
 //jshint esversion:6
-
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -15,7 +15,7 @@ app.use(express.static("public"));
 
 // mongoose.connect("mongodb://localhost:27017/todolistdb", {useNewUrlParser: true, useUnifiedTopology: true});
 
-mongoose.connect("mongodb+srv://admin-mitesh:miteshad@1096@cluster0.ebwgb.mongodb.net/todolistdb", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(PROCESS.env.CONNECTOIN_URL, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const itemsSchema = {
     name: String
@@ -148,7 +148,7 @@ app.get("/about", function(req, res){
 });
 
 
-const port = process.env.PORT;
+var port = process.env.PORT;
 
 if(port == null || port == "")
 {
